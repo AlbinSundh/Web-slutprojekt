@@ -1,3 +1,3 @@
 <footer>
-	Tack för kebaben
+	<p>	kontakt: support@kebabkungen.com <p>
 </footer>

@@ -3,3 +3,22 @@ body
 	background:#993300
 	
 }
+nav a:first-child
+{
+	margin-right: 93vw;
+	
+}
+
+article
+{
+	text-align:center;
+}
+
+
+footer
+{
+	background-color:#aaaaaa;
+	margin-top:50px;
+	margin:25%;
+	text-align:center; 
+}
