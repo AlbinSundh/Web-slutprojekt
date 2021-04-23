@@ -8,13 +8,15 @@
 	</head>
 	<body>
 		<?php
-			require "menu.php"
+			require "menu.php";
 		?>
 	
-	<article>
-		<h2> Titel </h2>
-		<p> bröd <p>
-	</article>
+	<form>
+		<p><label for="title">Titel</label>
+		<input> type="text" id="title"></p>
+		<p><table for="text">BrödText:</label>
+		<textarea type="text" row="5" cols="50" id="text" name="text"></p>
+	</form>
 	
 		<?php
 			require "footer.php"
