@@ -1,3 +1,5 @@
 <?php
-	require "../Template/CreateUser_template.php";
+
+	session_start();
+	require "../Template/CreateUser-template.php";
 ?>

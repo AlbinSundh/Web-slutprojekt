@@ -1,14 +1,16 @@
 <?php
 	$str="";
 	
+	require "../include/connect.php";
+	
 	if(isset($_GET['name'])){
-		$jsr = $_GET['name'];
-		$str = "Användarenamnet $usr är upptaget"
+		$str = $_GET['name'];
+		$str = "Användarenamnet $usr är upptaget";
 		
 	}
 	
 	if(isset($_GET['mail'])){
-		$ma = $['mail'];
+		$ma = $_GET['mail'];
 		$str = "Mailadressen $ma är upptaget";
 	}
 	
@@ -17,9 +19,6 @@
 	$Username = filter_input(INPUT_POST, 'Username', FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
 	$Email = filter_input(INPUT_POST, 'Email', FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
 	$Password = filter_input(INPUT_POST, 'Password', FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
-	}
-	
-	require "../includes/connect.php";
 
 
 	$sql = "SELECT * FROM users WHERE Username = ? OR Email = ?";
@@ -42,9 +41,9 @@
 	else{
 		$status = 1;
 		
-			$sql = "INSERT INTO User(Username, Email, Password, Status) VALUE (?;?;?;?)";
+			$sql = "INSERT INTO users(Username, Email, Password, Status) VALUE (?,?,?,?)";
 			$res = $dbh -> prepare ($sql);
-			$res -> bind_param("sssi", $Username, $Email, $Password, $Status);
+			$res -> bind_param("sssi", $Username, $Email, $Password, $status);
 			$res -> execute();
 			
 			$str = "Användare Tilllagd";
@@ -54,14 +53,14 @@
 	else{
 		echo $str;
 		$str.=<<<FORM
-			<form action="{$_SERVER['PHP_SELF*]}" metod="post">
-				<p><label for="user">Användarnamn:</label>
-				<input type="text" id=Username" name"Username"></p>
+			<form action="{$_SERVER['PHP_SELF']}" method="post">
+				<p><label for="Username">Användarnamn:</label>
+				<input type="text" id=Username" name="Username"></p>
 				<p><label for="Email">Email:</label>
-				<input type="email" id=Email" name"Email"></p>
+				<input type="email" id=Email" name="Email"></p>
 				<p><label for="Password">Lösernord:</label>
-				<input type="assword" id=Password" name"Password"></p>
-				<p><input type"submit" value="Skapa" Anvädnare"></p>
+				<input type="password" id=Password" name="Password"></p>
+				<p><input type="submit" value="Skapa Användare"></p>
 				
 			</form>
 FORM;
