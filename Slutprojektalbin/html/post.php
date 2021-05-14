@@ -1,5 +1,5 @@
 <?php
 	session_start();
 	
-	require "../Template/post-template.php";
+	require "../Templates/post_template.php";
 ?>

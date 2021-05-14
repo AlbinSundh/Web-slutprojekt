@@ -1,37 +1,45 @@
 <?php
-	if(empty($_POST['username'])||empty($_POST['password'])){
+	if(empty($_POST['Username'])||empty($_POST['Password']))
+	{
+		// ej ifyllda fält
 		header("Location:login.php");
 	}
-	require "../include/connect.php";
 	
-	$username = filter_input(INPUT_POST,'username', FILTER_SANITIZE_STRING,FILTER_FLAG_STRIP_LOW);
-	$password = filter_input(INPUT_POST,'password', FILTER_SANITIZE_STRING,FILTER_FLAG_STRIP_LOW);
+	require "../Include/connect.php";
 	
-	$sql="SELECT password, status FROM users WHERE username=?";
-	$res=$dbh->prepare($sql);
-	$res->bind_param("s",$username);
+	// Filtrerar input av säkerhets skäl
+	$Username = filter_input(INPUT_POST, 'Username',FILTER_SANITIZE_STRING,FILTER_FLAG_STRIP_LOW);
+	$Password = filter_input(INPUT_POST, 'Password',FILTER_SANITIZE_STRING,FILTER_FLAG_STRIP_LOW);
+	
+	$sql = "SELECT Password, Email, Status FROM users WHERE Username=?";
+	$res = $dbh->prepare($sql);
+	$res->bind_param("s",$Username); // Lägger in variabeln i sql frågan där "?" är
 	$res->execute();
 	
 	$result=$res->get_result();
 	$row=$result->fetch_assoc();
 	
-	if(!$row){
-		header("Locatio:login.php?status=1");
+	if(!$row)
+	{
+		echo "Avändaren finns inte";
+		// header("Location:login.php?status=3");
 		
 	}
-	
-	else{
-		if($row['password']==$password){
-			
+	else
+	{
+		if(password_verify($Password,$row['Password']))
+		{
+			// echo "Användaren är inloggad"
 			session_start();
-			$_SESSION['username']=$username;
-			header("Location:admin.php");
+			$_SESSION['Username']=$Username;
+			$_SESSION['Email']=$row['Email'];
+			$_SESSION['Status']=$row['Status'];
+			header("Location:login.php");
 		}
-	
-		else{
-			header("Location:login.php?status=2");
+		else
+		{
+			//echo Felaktigt lösenord
+			header("Location:login.php?status=4");
 		}
 	}
-
-	
 ?>

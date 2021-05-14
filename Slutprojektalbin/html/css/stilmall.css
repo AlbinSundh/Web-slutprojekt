@@ -1,6 +1,6 @@
-body
+body 
 {
-	background:#993300	
+	background: #993300;
 }
 
 nav a
@@ -11,7 +11,7 @@ nav a
 
 nav a:first-child
 {
-	margin-right: 90vw;
+	margin-right: 85vw;
 }
 
 article
@@ -23,7 +23,8 @@ footer
 {
 	background-color:#aaaaaa;
 	margin: 20px;
-	margin-top: 30vw;
+	margin-top: 10vw;
+	padding: 10px;
 	text-align: center;
 }
 
@@ -32,7 +33,12 @@ form
 	text-align: center;
 }
 
-form a
+div
+{
+	text-align: center;
+}
+
+a
 {
 	background-color: lavenderblush;
 	border-style: solid;

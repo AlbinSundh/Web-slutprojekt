@@ -1,4 +1,5 @@
 <?php
 	session_start();
-	require"../Template/login-template.php"
+	
+	require "../Templates/login_template.php";
 ?>

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 11 maj 2021 kl 14:32
--- Serverversion: 10.4.6-MariaDB
--- PHP-version: 7.3.8
+-- Tid vid skapande: 14 maj 2021 kl 17:49
+-- Serverversion: 10.4.19-MariaDB
+-- PHP-version: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -49,6 +48,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 
 --
+-- Dumpning av Data i tabell `users`
+--
+
+INSERT INTO `users` (`Username`, `Email`, `Password`, `Status`) VALUES
+('albin', 'bog@bog', '$2y$10$hQqedMYwbBH4z/MK.HQqe.ObXVvh3QfjQGS1a182xHAkE4hhVSxaq', 2);
+
+--
 -- Index för dumpade tabeller
 --
 
@@ -66,8 +72,8 @@ ALTER TABLE `posts`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`Username`),
-  ADD UNIQUE KEY `Username` (`Username`),
   ADD UNIQUE KEY `Email` (`Email`),
+  ADD UNIQUE KEY `Username` (`Username`),
   ADD KEY `Password` (`Password`);
 
 --
@@ -78,7 +84,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT för tabell `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `ID` int(100) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(100) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restriktioner för dumpade tabeller
